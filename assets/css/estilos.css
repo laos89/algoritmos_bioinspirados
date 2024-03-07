@@ -1,0 +1,237 @@
+/** RESET rems y espacios en padings**/
+html {
+    box-sizing: border-box;
+    font-size: 62.5%;
+    /** Reset para REMS - 62.5% = 10px de 16px **/
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+}
+
+body {
+    font-family: 'Lato', sans-serif;
+    font-size: 1.6rem;
+    line-height: 2;
+}
+
+/**GLOBALES**/
+.obligatorio {
+    color: red;
+    font-size: 13pt;
+    font-weight: bold;
+}
+
+#divLoading {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(254, 254, 255, .65);
+    z-index: 9999;
+    display: none;
+}
+
+img {
+    max-width: 100%;
+}
+
+.contenedor {
+    width: 95%;
+    max-width: 120rem;
+    margin: 0 auto;
+}
+
+.contenedor1 {
+    width: 80%;
+    max-width: 120rem;
+    margin: 0 auto;
+}
+
+h1 {
+    font-size: 3.8rem;
+}
+
+h2 {
+    font-size: 3.4rem;
+}
+
+h3 {
+    font-size: 3rem;
+}
+
+h4 {
+    font-size: 2.6rem;
+}
+
+/** UTILIDADES **/
+.seccion {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+.centrar-texto {
+    text-align: center;
+}
+
+.contenido-centrado {
+    max-width: 800px;
+}
+
+/** BOTONES **/
+.boton {
+    color: #ffffff;
+    font-weight: 700;
+    text-decoration: none;
+    font-size: 1.5rem;
+    padding: .5rem 2rem;
+    margin-top: .2rem;
+    display: inline-block;
+    text-align: center;
+    border: none;
+    display: block;
+    flex: 0 0 100%;
+}
+
+@media (min-width: 768px) {
+    .boton {
+        display: inline-block;
+        flex: 0 0 auto;
+    }
+}
+
+.boton,
+.acciones:hover {
+    cursor: pointer;
+}
+
+.boton-azul {
+    background-color: #00A7CC;
+}
+
+/** NAVEGACION **/
+.barra {
+    background-color: #004AAD;
+    height: 4.5rem;
+    padding: 0 10px 0 10px;
+    position: relative;
+    z-index: 9999;
+    /* Establece un alto valor de z-index */
+}
+
+@media (min-width: 768px) {
+    .barra {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+}
+
+.logo {
+    max-width: 10rem;
+}
+
+.navegacion a {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 2rem;
+    display: block;
+}
+
+@media (min-width: 768px) {
+    .navegacion a {
+        display: inline-block;
+        font-size: 1.8rem;
+        /** = 18px **/
+        margin-right: 2rem;
+    }
+    .navegacion a:last-of-type {
+        margin: 0;
+    }
+}
+
+.navegacion a:hover {
+    /**color: #00A7CC;**/
+    text-decoration: underline;
+}
+
+.navegacion ul {
+    list-style: none;
+}
+
+.menu>li {
+    position: relative;
+    display: inline-block;
+    min-width: 120px;
+}
+
+.menu>li>a {
+    display: block;
+    padding: 5px 13px;
+    text-decoration: none;
+}
+
+/**submenu**/
+.submenu {
+    position: absolute;
+    background: rgba(11, 132, 230, 0.7);
+    width: auto;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 1.5s;
+}
+
+.submenu li a {
+    display: block;
+    padding: 15px;
+    color: #ffffff;
+    white-space: nowrap;
+}
+
+.menu li:hover .submenu {
+    visibility: visible;
+    opacity: 1;
+}
+
+/** LOGIN **/
+legend {
+    font-size: 2rem;
+    color: #4f4f4f;
+}
+
+label {
+    font-weight: 700;
+    font-size: 1.3rem;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: rem;
+}
+
+input:not([type="submit"]) {
+    padding: 1rem;
+    height: 2rem;
+    display: block;
+    width: 100%;
+    background-color: #e1e1e1;
+    margin-bottom: 2rem;
+    border: none;
+    border-radius: 1rem;
+}
+
+input[type="file"].input-archivo {
+    height: 4rem;
+    font-size: 1.1rem; /* Tamaño de la letra dentro de los input de tipo file */
+}
+
+.indicacion {
+    font-size: 1rem;
+    color: #888;
+    display: block;
+    margin-top: 0;
+    margin-bottom: 0;
+}

@@ -1,6 +1,6 @@
 <?php
     //define("BASE_URL","http://localhost/tienda_virtual/");
-    const BASE_URL = "http://localhost/algoritmos/";
+    const BASE_URL = "http://localhost/ia_algoritmos/";
 
     //Zona horaria
     date_default_timezone_set('America/Mexico_city');
