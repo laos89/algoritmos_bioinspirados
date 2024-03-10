@@ -12,6 +12,7 @@
             $data['page_title'] = "AG-binario";
             $data['page_name'] = "AG-binario";
             $data['pagina_funciones'] = "funciones_ag_binario.js";
+            $data['pagina_validaciones'] = "validaciones_ag_binario.js";
             $this->views->getView($this,"binario",$data);
         }
         

@@ -11,7 +11,8 @@
             $data['page_tag'] = "IA";
             $data['page_title'] = "BPSO-mochila";
             $data['page_name'] = "BPSO-mochila";
-            $data['page_content'] = "Algoritmos Bioinspirados";
+            $data['pagina_funciones'] = "funciones_bpso_mochila.js";
+            $data['pagina_validaciones'] = "validaciones_bpso_mochila.js";
             $this->views->getView($this,"bpsomochila",$data);
         }
         

@@ -12,6 +12,7 @@
             $data['page_title'] = "AG-mochila";
             $data['page_name'] = "AG-mochila";
             $data['pagina_funciones'] = "funciones_ag_mochila.js";
+            $data['pagina_validaciones'] = "validaciones_ag_mochila.js";
             $this->views->getView($this,"agmochila",$data);
         }
         

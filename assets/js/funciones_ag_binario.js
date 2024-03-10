@@ -12,7 +12,6 @@ function obtenerDatos() {
     };
 }
 
-
 function generarPoblacion(cantidadDatos) {
     let poblacion = [];
 
@@ -58,7 +57,6 @@ function calcularAptitud(poblacion) {
 }
 
 function seleccionarPadres(poblacion) {
-    //console.log(poblacion)
     let padresSeleccionados = [];
     let cantidadDatos = poblacion.length;
 
@@ -68,8 +66,6 @@ function seleccionarPadres(poblacion) {
 
         for (let j = 0; j < cantidadDatos; j++) {
             if (poblacion[j][4] >= numeroAleatorio) {
-                //console.log("el numero aleatorio es: "+numeroAleatorio);
-                //console.log("el padre seleccionado es: "+poblacion[j][0]);
                 padresSeleccionados.push(poblacion[j][0]);
                 seleccionado = true;
                 break;
@@ -81,32 +77,21 @@ function seleccionarPadres(poblacion) {
             padresSeleccionados.push(poblacion[cantidadDatos - 1][0]);
         }
     }
-
-    //console.log(padresSeleccionados)
     return padresSeleccionados;
 }
 
 function cruzarPadres(padres, probabilidadCruce) {
-    //console.log(padres)
     let nuevosPadres = [];
     let pc = probabilidadCruce;
-    //console.log("la probabilidad de cruce es: "+probaCruce)
 
     for (let i = 0; i < padres.length; i += 2) {
         let numeroAleatorio = Math.random().toFixed(2);
         let padre1 = padres[i];
         let padre2 = padres[i + 1];
-        //console.log("el numero aleatorio es: "+numeroAleatorio)
 
         if (numeroAleatorio <= pc) {
-            //console.log("LOS PADRES SE VAN A CRUZAR")
-            //console.log(padre1)
-            //console.log(padre2)
-
             let indicador1 = Math.floor(Math.random() * 8);
             let indicador2 = Math.floor(Math.random() * 8);
-            //console.log(indicador1)
-            //console.log(indicador2)
 
             let padre1Segmento = padre1.split('').map(Number);
             let padre2Segmento = padre2.split('').map(Number);
@@ -121,8 +106,6 @@ function cruzarPadres(padres, probabilidadCruce) {
                 segmento2 = padre2Segmento.slice(indicador1).concat(padre2Segmento.slice(0, indicador2 + 1));
             }
 
-            //console.log(segmento1)
-            //console.log(segmento2)
             for (let j = 0; j < segmento1.length; j++) {
                 let indiceActual = (indicador1 + j) % 8;
                 padre1Segmento[indiceActual] = segmento2[j];
@@ -131,14 +114,11 @@ function cruzarPadres(padres, probabilidadCruce) {
 
             let nuevoPadre1 = padre1Segmento.join('');
             let nuevoPadre2 = padre2Segmento.join('');
-            //console.log("e nuevo padre1 es: "+nuevoPadre1)
-            //console.log("e nuevo padre2 es: "+nuevoPadre2)
             nuevosPadres.push(nuevoPadre1, nuevoPadre2);
         } else {
             nuevosPadres.push(padre1, padre2);
         }
     }
-    //console.log(nuevosPadres)
     return nuevosPadres;
 }
 
@@ -153,9 +133,6 @@ function mutarPadres(padresCruzados, probabilidadMutacion) {
             let numeroAleatorio = Math.random().toFixed(3);
 
             if (numeroAleatorio < pm) {
-                //console.log("el numero aleatorio es: "+numeroAleatorio)
-                //console.log("la probabilidad de mutacion es: "+probaMutacion)
-                //console.log("se ha mutado al padre")
                 nuevoPadre[i] = nuevoPadre[i] === '0' ? '1' : '0';
             }
         });
@@ -206,12 +183,12 @@ function algoritmoGenetico(poblacionInicial, generaciones, probabilidadCruce, pr
 
         poblacionActual = padresMutados;
 
-        console.log(`El mejor individuo de la generación ${i} es: ${mejorIndividuoGeneracion[0]} con un valor de: ${mejorIndividuoGeneracion[1]} con un fitness de: ${mejorIndividuoGeneracion[2]}`);
+        //console.log(`El mejor individuo de la generación ${i} es: ${mejorIndividuoGeneracion[0]} con un valor de: ${mejorIndividuoGeneracion[1]} con un fitness de: ${mejorIndividuoGeneracion[2]}`);
         mejorDeMejor.push(mejorIndividuoGeneracion);
     }
 
     let solucion = mejorDeMejor.reduce((max, current) => (current[2] > max[2] ? current : max));
-    console.log("La mejor solución encontrada es: " + solucion[0] + " con un valor de: " + solucion[1] + " y un fitness de: " + solucion[2]);
+    //console.log("La mejor solución encontrada es: " + solucion[0] + " con un valor de: " + solucion[1] + " y un fitness de: " + solucion[2]);
     // Mostrar resultados en la columna correspondiente
     mostrarResultados(solucion);
 }
@@ -228,73 +205,4 @@ function ejecutarAlgoritmoGenetico() {
     algoritmoGenetico(poblacionInicial, datos.generaciones, datos.probCruce, datos.probMutacion);
 }
 
-function validarDatos() {
-    // Obtener los valores de los campos
-    let poblacionInput = document.getElementById("poblacion");
-    let generacionesInput = document.getElementById("generaciones");
-    let probCruceInput = document.getElementById("probCruce");
-    let probMutacionInput = document.getElementById("probMutacion");
-
-    let poblacion = parseInt(poblacionInput.value);
-    let generaciones = parseInt(generacionesInput.value);
-    let probCruce = parseFloat(probCruceInput.value);
-    let probMutacion = parseFloat(probMutacionInput.value);
-
-    // Validar que ningún campo esté vacío
-    if (!poblacionInput.value || !generacionesInput.value || !probCruceInput.value || !probMutacionInput.value) {
-        mostrarError("Todos los campos deben ser completados acorde a las indicaciones.");
-        return false;
-    }
-
-    // Validar que los campos contengan solo números
-    if (isNaN(poblacion) || isNaN(generaciones) || isNaN(probCruce) || isNaN(probMutacion)) {
-        mostrarError("Todos los campos deben contener solo números.");
-        return false;
-    }
-
-    // Validar que población sea un número par
-    if (poblacion % 2 !== 0) {
-        mostrarError("La cantidad de población debe ser un número par.");
-        return false;
-    }
-
-    // Validar que probabilidad de cruce esté en el rango correcto
-    if (probCruce <= 0 || probCruce >= 1) {
-        mostrarError("La probabilidad de cruce debe ser un decimal entre 0 y 1.");
-        return false;
-    }
-
-    // Validar que probabilidad de mutación esté en el rango correcto
-    if (probMutacion <= 0 || probMutacion >= 1) {
-        mostrarError("La probabilidad de mutación debe ser un decimal entre 0 y 1");
-        return false;
-    }
-
-    // Validar que generaciones sea un número positivo
-    if (generaciones <= 0) {
-        mostrarError("La cantidad de generaciones debe ser un número positivo.");
-        return false;
-    }
-
-    // Si pasa todas las validaciones, devuelve true
-    return true;
-}
-
-
-function mostrarError(mensaje) {
-    // Muestra el mensaje de error en algún lugar apropiado de tu interfaz
-    alert("Error: " + mensaje);
-}
-
-
 document.getElementById("btnEjecutar").addEventListener("click", ejecutarAlgoritmoGenetico);
-
-// Ejecucion de funciones
-/*let cantidadPoblacion = 20; // Cantidad de población
-let cantidadGeneraciones = 10; // Cantidad de generaciones
-let probaCruce = 0.65; // Probabilidad de cruce
-let probaMutacion = 0.001; // Probabilidad de mutación
-
-let poblacionInicial = generarPoblacion(cantidadPoblacion);
-algoritmoGenetico(poblacionInicial, cantidadGeneraciones, probaCruce, probaMutacion);*/
-
